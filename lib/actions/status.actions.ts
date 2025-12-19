@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
+import { auth,currentUser } from "@clerk/nextjs/server";
 import { createSupabaseClient } from "@/lib/supabase";
 
 /**
@@ -15,9 +15,25 @@ export const upsertTodayStatus = async (payload: {
     const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
+    const user = await currentUser();
+    if (!user) throw new Error("User not found");
+
     const supabase = createSupabaseClient();
 
-    const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+    // ✅ Derive a good display name from Clerk
+    const name =
+        user.username ||
+        user.firstName ||
+        user.emailAddresses?.[0]?.emailAddress ||
+        "User";
+
+    // 🔑 Ensure profile exists (idempotent)
+    await supabase.from("users_profile").upsert({
+        clerk_id: userId,
+        name,
+    });
+
+    const today = new Date().toISOString().split("T")[0];
 
     const { data, error } = await supabase
         .from("status_updates")
@@ -36,9 +52,7 @@ export const upsertTodayStatus = async (payload: {
         .select()
         .single();
 
-    if (error) {
-        throw new Error(error.message);
-    }
+    if (error) throw new Error(error.message);
 
     return data;
 };
