@@ -72,15 +72,45 @@ export const getTodayStatus = async () => {
  * Get async status feed (latest first)
  * Used for team board
  */
+// export const getStatusFeed = async (limit = 20) => {
+//     const supabase = createSupabaseClient();
+//
+//     const { data, error } = await supabase
+//         .from("status_updates")
+//         .select(
+//             `
+//       id,
+//       owner_id,
+//       date,
+//       focus,
+//       blockers,
+//       decision,
+//       needs_help,
+//       created_at,
+//       users_profile (
+//             name
+//         )
+//     `
+//         )
+//         .order("created_at", { ascending: false })
+//         .limit(limit);
+//
+//     if (error) {
+//         throw new Error(error.message);
+//     }
+//
+//     return data;
+// };
+
+
 export const getStatusFeed = async (limit = 20) => {
     const supabase = createSupabaseClient();
+    const { userId } = await auth();
 
-    const { data, error } = await supabase
+    const query = supabase
         .from("status_updates")
-        .select(
-            `
+        .select(`
       id,
-      owner_id,
       date,
       focus,
       blockers,
@@ -88,16 +118,19 @@ export const getStatusFeed = async (limit = 20) => {
       needs_help,
       created_at,
       users_profile (
-            name
-        )
-    `
-        )
+        name
+      )
+    `)
         .order("created_at", { ascending: false })
         .limit(limit);
 
-    if (error) {
-        throw new Error(error.message);
+    if (userId) {
+        query.neq("owner_id", userId);
     }
 
+    const { data, error } = await query;
+
+    if (error) throw new Error(error.message);
     return data;
 };
+
