@@ -76,20 +76,15 @@ export default function Navbar() {
 
                     {/* Desktop */}
                     <div className="hidden md:flex items-center gap-6">
-                        <Link href="/Dashboard" className={linkClass('/Dashboard')}>
-                            Dashboard
-                            {underline('/Dashboard')}
-                        </Link>
+                        {/*<Link href="/Dashboard" className={linkClass('/Dashboard')}>*/}
+                        {/*    Dashboard*/}
+                        {/*    {underline('/Dashboard')}*/}
+                        {/*</Link>*/}
 
-                        <Link href="/pricing" className={linkClass('/pricing')}>
-                            Pricing
-                            {underline('/pricing')}
-                        </Link>
+                        <Link href="/status/today">Today</Link>
+                        <Link href="/team">Team</Link>
+                        <Link href="/profile">My History</Link>
 
-                        <Link href="/about" className={linkClass('/about')}>
-                            About
-                            {underline('/about')}
-                        </Link>
 
                         <SignedOut>
                             <SignInButton />
@@ -116,12 +111,10 @@ export default function Navbar() {
                         <Link href="/Dashboard" className={linkClass('/Dashboard')}>
                             Dashboard
                         </Link>
-                        <Link href="/pricing" className={linkClass('/pricing')}>
-                            Pricing
-                        </Link>
-                        <Link href="/about" className={linkClass('/about')}>
-                            About
-                        </Link>
+                        <Link href="/status/today" >Today</Link>
+                        <Link href="/team">Team</Link>
+                        <Link href="/profile">My History</Link>
+
 
                         <SignedOut>
                             <SignInButton />
