@@ -133,11 +133,15 @@ const Page = () => {
         <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 px-4 overflow-hidden">
 
             {/* 2. Background Component: Set to absolute to stay behind content */}
-            <FireworksBackground
-                population={3}
-                particleSize={{ min: 1, max: 3 }}
-                className="absolute inset-0 z-0 opacity-40 pointer-events-none"
-            />
+            <SignedIn>
+                <FireworksBackground
+                    population={3}
+                    particleSize={{ min: 1, max: 3 }}
+                    className="absolute inset-0 z-0 opacity-40 pointer-events-none"
+                />
+
+            </SignedIn>
+
 
             {/* 3. Content Layer: Added "relative z-10" to ensure text/buttons are clickable */}
             <div className="relative z-10 flex flex-col items-center text-center animate-fade-in-up">
