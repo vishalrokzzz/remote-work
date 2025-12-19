@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SprintHack 🚀  
+**Async-first engineering updates with AI-powered context awareness**
 
-## Getting Started
+🔗 **Deployed Link:** https://sprinthack-remote.vercel.app/
 
-First, run the development server:
+---
+
+## 📌 Overview
+
+SprintHack is an **async engineering status board** designed for modern, remote-first teams.  
+Instead of constant standups, pings, and interruptions, SprintHack enables engineers to share daily updates asynchronously while intelligently surfacing **who can help when blockers arise**.
+
+The system emphasizes:
+- clear ownership
+- async collaboration
+- production-ready engineering practices
+
+Built as a **solo project** during the *Sprintfour Innovation Hackathon 2025*, SprintHack won **1st place** for its scope, system design, and execution.
+
+---
+
+## 🎯 Problem Statement
+
+Remote teams struggle with:
+- constant context switching
+- unclear ownership of blockers
+- inefficient help discovery (“Who worked on this before?”)
+
+Traditional status tools collect updates but fail to provide **actionable context**.
+
+---
+
+## 💡 Solution
+
+SprintHack combines **structured async updates** with **context-aware insights**:
+
+### Core capabilities
+- Daily async status updates (focus, blockers, help needed)
+- AI-assisted blocker classification
+- Context matching to suggest teammates who recently worked on similar issues
+- Clear visibility without disrupting workflows
+
+---
+
+## ✨ Features
+
+### 📝 Daily Status Updates
+- Focus
+- Blockers
+- Help-needed flag
+
+### 🤖 AI-Powered Insights
+- Classifies blockers (infra, API, tooling, etc.)
+- Estimates severity
+- Suggests teammates with recent relevant context
+- Falls back to deterministic matching when AI is unavailable
+
+### 👥 Team Feed
+- Real-time async team updates
+- Clear visibility into who needs help
+
+### 📊 Personal History
+- View your own recent status updates
+- Track patterns over time
+
+### 🔐 Secure by Default
+- Row Level Security (RLS) enforced at database layer
+- Users can only access permitted data
+
+---
+
+## 🧠 System Design
+
+### Frontend
+- **Next.js (App Router)** + **TypeScript**
+- Server Actions for mutations and reads
+- Clean separation of client and server concerns
+
+### Authentication & Sessions
+- **Clerk**
+  - Authentication
+  - Session management
+  - User identity propagation into backend
+
+### Database & Backend
+- **Supabase (Postgres)**
+  - Normalized schema
+  - Foreign keys & indexes
+  - Unique constraints (1 status per user per day)
+  - Row Level Security (RLS) policies
+
+### AI Layer
+- AI-assisted blocker classification
+- Context matching layered on **real team activity**, not just static LLM output
+- Graceful degradation to keyword-based matching
+
+### Observability
+- **Sentry**
+  - Runtime error tracking
+  - Production-grade observability
+  - Fail-fast error handling
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** Next.js (App Router), TypeScript, Tailwind CSS
+- **Auth:** Clerk
+- **Database:** Supabase (Postgres)
+- **AI:** Context-aware analysis (LLM + deterministic fallback)
+- **Observability:** Sentry
+- **Deployment:** Vercel
+
+---
+
+## 🏆 Hackathon Context
+
+- **Event:** Sprintfour Innovation Hackathon 2025
+- **Format:** Solo hackathon (9 AM – 4 PM)
+- **Evaluation Criteria:**
+  - Problem clarity
+  - System design
+  - Clean Git history
+  - Production mindset
+  - Working prototype
+
+SprintHack secured **🥇 1st place** among all submissions.
+
+---
+
+## 📚 Key Learnings
+
+- Async-first workflows scale better than synchronous status checks
+- Database-enforced security (RLS) simplifies application logic
+- AI is most effective when paired with real system context
+- Clean commits and architecture matter as much as features
+
+---
+
+## 🚀 Getting Started (Local)
 
 ```bash
+git clone https://github.com/<your-username>/remote-work.git
+cd remote-work
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
