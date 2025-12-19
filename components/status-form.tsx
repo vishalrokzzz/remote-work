@@ -24,7 +24,7 @@ export default function StatusForm({ initialData }: { initialData: any }) {
                 needs_help: needsHelp,
             });
 
-            // 2️⃣ Run AI only if help is requested + blocker exists
+            // 2️ Run AI only if help is requested + blocker exists
             if (needsHelp && blockers?.trim()) {
                 setAiLoading(true);
                 try {
