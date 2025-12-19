@@ -81,9 +81,18 @@ export default function Navbar() {
                         {/*    {underline('/Dashboard')}*/}
                         {/*</Link>*/}
 
-                        <Link href="/status/today">Today</Link>
-                        <Link href="/team">Team</Link>
-                        <Link href="/profile">My History</Link>
+                        <Link href="/status/today" className={linkClass('/status/today')}>
+                            Today
+                            {/*{underline('/status/today')}*/}
+                        </Link>
+                        <Link href="/team" className={linkClass('/team')}>
+                            Team
+                            {/*{underline('/status/today')}*/}
+                        </Link>
+                        <Link href="/profile" className={linkClass('/profile')}>
+                            My History
+                            {/*{underline('/status/today')}*/}
+                        </Link>
 
 
                         <SignedOut>
