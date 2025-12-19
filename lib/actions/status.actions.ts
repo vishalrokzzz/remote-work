@@ -87,11 +87,9 @@ export const getStatusFeed = async (limit = 20) => {
       decision,
       needs_help,
       created_at,
-      users_profile:owner_id (
-        clerk_id,
-        name,
-        avatar_url
-      )
+      users_profile (
+            name
+        )
     `
         )
         .order("created_at", { ascending: false })

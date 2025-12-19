@@ -1,20 +1,36 @@
-import React from 'react';
-import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
+import { getTodayStatus, getStatusFeed } from "@/lib/actions/status.actions";
+import StatusForm from "@/components/status-form";
+import StatusFeed from "@/components/status-feed";
 
-const Page = async () => {
-    const { userId } = await auth();
-
-    if (!userId) {
-        redirect('/sign-in');
-    }
+export default async function DashboardPage() {
+    const todayStatus = await getTodayStatus();
+    const feed = await getStatusFeed(20);
 
     return (
-        <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-            <p>Welcome to your dashboard! You are signed in.</p>
+        <div className="max-w-3xl mx-auto px-4 py-8 space-y-10">
+            <div>
+                <h1 className="text-2xl font-semibold">Today’s Status</h1>
+                <p className="text-sm text-muted-foreground">
+                    Share what you’re working on. Async by default.
+                </p>
+
+                <div className="mt-4">
+                    <StatusForm initialData={todayStatus} />
+                </div>
+            </div>
+
+            <hr />
+
+            <div>
+                <h2 className="text-xl font-semibold">Team Updates</h2>
+                <p className="text-sm text-muted-foreground">
+                    Latest async updates from the team
+                </p>
+
+                <div className="mt-6">
+                    <StatusFeed items={feed} />
+                </div>
+            </div>
         </div>
     );
-};
-
-export default Page;
+}
