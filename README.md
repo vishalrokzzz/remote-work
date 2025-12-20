@@ -3,6 +3,14 @@
 
 🔗 **Deployed Link:** https://sprinthack-remote.vercel.app/
 
+## 🎥 Demo Video:
+
+A short walkthrough demonstrating the core workflow, AI-assisted insights, and system design decisions.
+
+▶️ Watch here: https://www.loom.com/share/afa304e81eaa4b17bc650d9aa7df35f4
+
+
+
 ---
 
 ## 📌 Overview
