@@ -148,7 +148,7 @@ SprintHack secured **🥇 1st place** among all submissions.
 ## 🚀 Getting Started (Local)
 
 ```bash
-git clone https://github.com/<your-username>/remote-work.git
+git clone https://github.com/vishalrokzzz/remote-work.git
 cd remote-work
 npm install
 npm run dev
